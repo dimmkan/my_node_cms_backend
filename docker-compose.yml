@@ -1,0 +1,10 @@
+version: '3'
+services:
+  my_node_cms_backend:
+    image: my_node_cms_backend:latest
+    container_name: my_node_cms_backend
+    restart: always
+    ports:
+      - 3000:3000
+    env_file:
+      - ./.env

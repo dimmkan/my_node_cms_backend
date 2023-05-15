@@ -1,4 +1,8 @@
+import 'moment-timezone';
+import * as moment from 'moment';
 import {
+  BeforeInsert,
+  BeforeUpdate,
   Column,
   CreateDateColumn,
   Entity,
@@ -22,4 +26,21 @@ export class PostEntity {
 
   @UpdateDateColumn()
   date_update: Date;
+
+  @BeforeInsert()
+  insertCreated() {
+    this.date_create = new Date(
+      moment().tz('Europe/Moscow').format('YYYY-MM-DD HH:mm:ss'),
+    );
+    this.date_update = new Date(
+      moment().tz('Europe/Moscow').format('YYYY-MM-DD HH:mm:ss'),
+    );
+  }
+
+  @BeforeUpdate()
+  insertUpdated() {
+    this.date_update = new Date(
+      moment().tz('Europe/Moscow').format('YYYY-MM-DD HH:mm:ss'),
+    );
+  }
 }

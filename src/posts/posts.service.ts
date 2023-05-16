@@ -19,7 +19,11 @@ export class PostsService {
   }
 
   async findAll(): Promise<PostEntity[]> {
-    return await this.postsRepository.find();
+    return await this.postsRepository.find({
+      order: {
+        date_create: 'DESC',
+      },
+    });
   }
 
   async findOne(id: number): Promise<PostEntity> {
